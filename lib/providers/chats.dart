@@ -1,20 +1,10 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:team_chat_demo/chat/widgets/chat_history.dart';
 
 class Chats with ChangeNotifier, DiagnosticableTreeMixin {
-  int _count = 0;
+  final List<Message> _chats;
 
-  int get count => _count;
+  Chats.withMessages(this._chats);
 
-  void increment() {
-    _count++;
-    notifyListeners();
-  }
-
-  /// Makes `Counter` readable inside the devtools by listing all of its properties
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(IntProperty('count', count));
-  }
+  List<Message> get chats => _chats;
 }

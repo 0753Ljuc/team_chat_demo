@@ -15,8 +15,9 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreen extends State<ChatScreen> {
-  late List<Message> messages;
   late ContactPoint me;
+  late final List<Message> messages;
+
   Timer? _timer;
   final TextEditingController _controller = TextEditingController();
   final ScrollController _scrollController = ScrollController();
@@ -24,8 +25,8 @@ class _ChatScreen extends State<ChatScreen> {
   @override
   void initState() {
     super.initState();
+    messages = widget.contact.chat_history;
     me = context.read<Profile>().me;
-    messages = generateMessages(widget.contact, me);
   }
 
   void _handleSubmitted(String text) {
@@ -122,13 +123,4 @@ class _ChatScreen extends State<ChatScreen> {
       ),
     );
   }
-}
-
-List<Message> generateMessages(ContactPoint contact, ContactPoint self) {
-  return [
-    Message.fromContact(contact, DateTime(2024, 5, 6, 17, 30), "Hello!"),
-    Message.fromContact(self, DateTime(2024, 5, 6, 17, 31), "Hi, bro"),
-    Message.fromContact(
-        contact, DateTime(2024, 5, 6, 17, 33), "I am missing you !!!"),
-  ];
 }

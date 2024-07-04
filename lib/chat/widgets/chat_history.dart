@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:team_chat_demo/common/utils.dart';
 import 'package:team_chat_demo/contacts/widgets/contact_point.dart';
 
 class Message extends ContactPoint {
@@ -51,7 +52,7 @@ class ChatHistory extends StatelessWidget {
                       isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '${message.time.hour}:${message.time.minute}:${message.time.second}',
+                      getDisplayTime(message.time),
                       style: const TextStyle(
                         fontSize: 10.0,
                         color: Colors.grey,
