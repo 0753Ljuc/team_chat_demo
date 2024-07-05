@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:team_chat_demo/chat/widgets/chat_history.dart';
-import 'package:team_chat_demo/contacts/widgets/contact_point.dart';
 import 'package:team_chat_demo/providers/contacts.dart';
 
 Color getRandomColor() {
@@ -48,5 +47,6 @@ DateTime generateRandomTimeWithinDuration(
 
 String getDisplayTime(DateTime time) {
   String str = time.toLocal().toString();
-  return str.substring(0, str.length - 4);
+
+  return str.split(".")[0];
 }

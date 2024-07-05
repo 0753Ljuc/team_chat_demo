@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:team_chat_demo/chat/widgets/chat_history.dart';
 import 'package:team_chat_demo/contacts/widgets/contact_point.dart';
+import 'package:team_chat_demo/providers/chats.dart';
 import 'package:team_chat_demo/providers/profile.dart';
 
 class ChatScreen extends StatefulWidget {
@@ -29,24 +30,32 @@ class _ChatScreen extends State<ChatScreen> {
     me = context.read<Profile>().me;
   }
 
+  void _autoReply() {
+    if (_timer != null) {
+      _timer!.cancel();
+    }
+    _timer = Timer(const Duration(seconds: 3), () {
+      setState(() {
+        var msg = Message.fromContact(widget.contact, DateTime.now(),
+            "Sorry, I am leaving, will back soon");
+        messages.add(msg);
+        context.read<Chats>().insertNewChat(msg);
+        _scrollToBottom();
+      });
+    });
+  }
+
   void _handleSubmitted(String text) {
     _controller.clear();
-    setState(() {
-      if (text.isNotEmpty) {
-        messages.add(Message.fromContact(me, DateTime.now(), text));
+    if (text.isNotEmpty) {
+      setState(() {
+        var msg = Message.fromContact(me, DateTime.now(), text);
+        messages.add(msg);
+        context.read<Chats>().insertNewChatFromMe(widget.contact, msg);
         _scrollToBottom();
-        if (_timer != null) {
-          _timer!.cancel();
-        }
-        _timer = Timer(const Duration(seconds: 2), () {
-          setState(() {
-            messages.add(Message.fromContact(widget.contact, DateTime.now(),
-                "Sorry, I am leaving, will back soon"));
-            _scrollToBottom();
-          });
-        });
-      }
-    });
+        _autoReply();
+      });
+    }
   }
 
   void _scrollToBottom() {
@@ -57,6 +66,12 @@ class _ChatScreen extends State<ChatScreen> {
         curve: Curves.easeOut,
       );
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _timer?.cancel();
   }
 
   @override

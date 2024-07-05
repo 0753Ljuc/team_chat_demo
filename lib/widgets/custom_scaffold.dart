@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:team_chat_demo/contacts/contact_screen.dart';
-import 'package:team_chat_demo/wechat/wechat_screen.dart';
+import 'package:team_chat_demo/team_chat/team_chat_screen.dart';
 
 class CustomScaffold extends StatefulWidget {
   const CustomScaffold({super.key});
@@ -11,10 +11,10 @@ class CustomScaffold extends StatefulWidget {
 
 List<(Widget, BottomNavigationBarItem)> _screens = [
   (
-    WechatScreen(),
+    const TeamChatScreen(),
     const BottomNavigationBarItem(
-      icon: Icon(Icons.home),
-      label: '微信',
+      icon: Icon(Icons.chat_rounded),
+      label: 'Team Chat',
     )
   ),
   (

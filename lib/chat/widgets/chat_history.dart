@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:team_chat_demo/common/utils.dart';
 import 'package:team_chat_demo/contacts/widgets/contact_point.dart';
 
-class Message extends ContactPoint {
+class Message {
   final DateTime time;
   final String text;
+  final ContactPoint cp;
 
-  Message(super.avatar, super.name, this.text, this.time);
+  Message(this.time, this.text, this.cp);
 
   factory Message.fromContact(
       ContactPoint contact, DateTime time, String text) {
     return Message(
-      contact.avatar,
-      contact.name,
-      text,
       time,
+      text,
+      contact,
     );
   }
 }
@@ -38,13 +38,14 @@ class ChatHistory extends StatelessWidget {
       itemCount: messages.length,
       itemBuilder: (context, index) {
         final message = messages[index];
-        final isMe = message.name == me.name && message.avatar == me.avatar;
+        final isMe =
+            message.cp.name == me.name && message.cp.avatar == me.avatar;
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (!isMe) message.avatar,
+              if (!isMe) message.cp.avatar,
               const SizedBox(width: 8.0),
               Expanded(
                 child: Column(
