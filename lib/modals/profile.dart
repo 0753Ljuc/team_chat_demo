@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:team_chat_demo/contacts/widgets/contact_point.dart';
+import 'package:team_chat_demo/screens/contacts/widgets/contact_point.dart';
 
 class Profile with ChangeNotifier, DiagnosticableTreeMixin {
   final ContactPoint _me = ContactPoint(

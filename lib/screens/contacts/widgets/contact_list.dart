@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:team_chat_demo/chat/chat_screen.dart';
-import 'package:team_chat_demo/contacts/widgets/contact_point.dart';
+import 'package:team_chat_demo/screens/contacts/widgets/contact_point.dart';
 
 class ContactList extends StatelessWidget {
   const ContactList({super.key, required this.list});

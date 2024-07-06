@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:team_chat_demo/common/utils.dart';
 import 'package:team_chat_demo/my_app.dart';
-import 'package:team_chat_demo/providers/chats.dart';
-import 'package:team_chat_demo/providers/contacts.dart';
-import 'package:team_chat_demo/providers/profile.dart';
+import 'package:team_chat_demo/modals/chats.dart';
+import 'package:team_chat_demo/modals/contacts.dart';
+import 'package:team_chat_demo/modals/profile.dart';
 
 void main() {
   runApp(

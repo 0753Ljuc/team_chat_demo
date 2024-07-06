@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:team_chat_demo/common/utils.dart';
-import 'package:team_chat_demo/contacts/widgets/contact_point.dart';
+import 'package:team_chat_demo/screens/contacts/widgets/contact_point.dart';
 
 class Message {
   final DateTime time;

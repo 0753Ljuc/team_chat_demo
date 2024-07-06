@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:team_chat_demo/chat/widgets/chat_history.dart';
-import 'package:team_chat_demo/contacts/widgets/contact_point.dart';
-import 'package:team_chat_demo/providers/chats.dart';
-import 'package:team_chat_demo/providers/profile.dart';
+import 'package:team_chat_demo/screens/contacts/widgets/contact_point.dart';
+import 'package:team_chat_demo/modals/chats.dart';
+import 'package:team_chat_demo/modals/profile.dart';
 
 class ChatScreen extends StatefulWidget {
   final ContactPoint contact;

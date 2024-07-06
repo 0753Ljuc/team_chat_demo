@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:team_chat_demo/chat/widgets/chat_history.dart';
-import 'package:team_chat_demo/providers/contacts.dart';
+import 'package:team_chat_demo/modals/contacts.dart';
 
 Color getRandomColor() {
   Random random = Random();

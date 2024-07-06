@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:team_chat_demo/contacts/contact_screen.dart';
-import 'package:team_chat_demo/team_chat/team_chat_screen.dart';
+import 'package:team_chat_demo/screens/contacts/contact_screen.dart';
+import 'package:team_chat_demo/screens/profile/profile_screen.dart';
+import 'package:team_chat_demo/screens/team_chat/team_chat_screen.dart';
 
 class CustomScaffold extends StatefulWidget {
   const CustomScaffold({super.key});
@@ -51,11 +52,12 @@ class _CustomScaffoldState extends State<CustomScaffold> {
 
   @override
   Widget build(BuildContext context) {
+    var screen = _screens[_currentIndex];
     return Scaffold(
       appBar: AppBar(
-        title: Text(_screens[_currentIndex].$2.label!),
+        title: screen.$2.label == "我" ? null : Text(screen.$2.label!),
       ),
-      body: _screens[_currentIndex].$1,
+      body: screen.$1,
       bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           currentIndex: _currentIndex,
@@ -73,17 +75,6 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Center(
       child: Text('SearchScreen'),
-    );
-  }
-}
-
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('ProfileScreen'),
     );
   }
 }

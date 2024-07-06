@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:team_chat_demo/common/utils.dart';
-import 'package:team_chat_demo/contacts/widgets/contact_point.dart';
+import 'package:team_chat_demo/screens/contacts/widgets/contact_point.dart';
 
 class Contacts with ChangeNotifier, DiagnosticableTreeMixin {
   final List<ContactPoint> _contactList = nameList

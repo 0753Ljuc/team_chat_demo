@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:team_chat_demo/chat/widgets/chat_history.dart';
-import 'package:team_chat_demo/contacts/widgets/contact_point.dart';
+import 'package:team_chat_demo/screens/contacts/widgets/contact_point.dart';
 
 class Chats with ChangeNotifier, DiagnosticableTreeMixin {
   List<Message> _chats;
