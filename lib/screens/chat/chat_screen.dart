@@ -1,8 +1,6 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:team_chat_demo/chat/widgets/chat_history.dart';
+import 'package:team_chat_demo/screens/chat/widgets/chat_history.dart';
 import 'package:team_chat_demo/screens/contacts/widgets/contact_point.dart';
 import 'package:team_chat_demo/modals/chats.dart';
 import 'package:team_chat_demo/modals/profile.dart';
@@ -19,31 +17,8 @@ class _ChatScreen extends State<ChatScreen> {
   late ContactPoint me;
   late final List<Message> messages;
 
-  Timer? _timer;
   final TextEditingController _controller = TextEditingController();
   final ScrollController _scrollController = ScrollController();
-
-  @override
-  void initState() {
-    super.initState();
-    messages = widget.contact.chat_history;
-    me = context.read<Profile>().me;
-  }
-
-  void _autoReply() {
-    if (_timer != null) {
-      _timer!.cancel();
-    }
-    _timer = Timer(const Duration(seconds: 3), () {
-      setState(() {
-        var msg = Message.fromContact(widget.contact, DateTime.now(),
-            "Sorry, I am leaving, will back soon");
-        messages.add(msg);
-        context.read<Chats>().insertNewChat(msg);
-        _scrollToBottom();
-      });
-    });
-  }
 
   void _handleSubmitted(String text) {
     _controller.clear();
@@ -53,7 +28,6 @@ class _ChatScreen extends State<ChatScreen> {
         messages.add(msg);
         context.read<Chats>().insertNewChatFromMe(widget.contact, msg);
         _scrollToBottom();
-        _autoReply();
       });
     }
   }
@@ -69,13 +43,22 @@ class _ChatScreen extends State<ChatScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    widget.contact.unreadCounts = 0;
+    messages = widget.contact.chatHistory;
+    me = context.read<Profile>().me;
+    context.read<Chats>().clearUnreadCounts(widget.contact);
+  }
+
+  @override
   void dispose() {
     super.dispose();
-    _timer?.cancel();
   }
 
   @override
   Widget build(BuildContext context) {
+    context.watch<Chats>();
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.contact.name),

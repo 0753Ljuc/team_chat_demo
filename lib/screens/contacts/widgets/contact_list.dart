@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:team_chat_demo/chat/chat_screen.dart';
+import 'package:team_chat_demo/screens/chat/chat_screen.dart';
 import 'package:team_chat_demo/screens/contacts/widgets/contact_point.dart';
+import 'package:team_chat_demo/widgets/router_setting.dart';
 
 class ContactList extends StatelessWidget {
   const ContactList({super.key, required this.list});
@@ -39,12 +40,11 @@ class ContactList extends StatelessWidget {
                 leading: contact.avatar,
                 title: Text(contact.name),
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ChatScreen(
-                                contact: contact,
-                              )));
+                  Navigator.pushNamed(
+                    context,
+                    chatScreenRoute,
+                    arguments: contact,
+                  );
                 },
               );
             }).toList())

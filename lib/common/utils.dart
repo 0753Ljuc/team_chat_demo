@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:team_chat_demo/chat/widgets/chat_history.dart';
+import 'package:team_chat_demo/screens/chat/widgets/chat_history.dart';
 import 'package:team_chat_demo/modals/contacts.dart';
 
 Color getRandomColor() {
@@ -27,11 +27,13 @@ List<Message> injectMessageIntoContactPoints(BuildContext context) {
 
   for (var v in contacts.contactList.sublist(10, 15)) {
     var message = Message.fromContact(
-        v,
-        generateRandomTimeWithinDuration(startTime, const Duration(days: 4)),
-        "Hello!");
+      v,
+      generateRandomTimeWithinDuration(startTime, const Duration(days: 4)),
+      "Hello!",
+    );
     newChats.add(message);
-    v.chat_history = [message];
+    v.chatHistory = [message];
+    v.unreadCounts = v.chatHistory.length;
   }
 
   return newChats..sort((a, b) => b.time.compareTo(a.time));

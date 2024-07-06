@@ -7,10 +7,17 @@ class Message {
   final String text;
   final ContactPoint cp;
 
-  Message(this.time, this.text, this.cp);
+  Message(
+    this.time,
+    this.text,
+    this.cp,
+  );
 
   factory Message.fromContact(
-      ContactPoint contact, DateTime time, String text) {
+    ContactPoint contact,
+    DateTime time,
+    String text,
+  ) {
     return Message(
       time,
       text,

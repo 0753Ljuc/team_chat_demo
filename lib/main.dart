@@ -13,8 +13,8 @@ void main() {
         ChangeNotifierProvider(create: (_) => Profile()),
         ChangeNotifierProvider(create: (_) => Contacts()),
         ChangeNotifierProvider(
-            create: (context) =>
-                Chats.withMessages(injectMessageIntoContactPoints(context))),
+            create: (context) => Chats.withMessages(
+                injectMessageIntoContactPoints(context), context)),
       ],
       child: const MyApp(),
     ),

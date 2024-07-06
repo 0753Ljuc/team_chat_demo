@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:team_chat_demo/chat/chat_screen.dart';
-import 'package:team_chat_demo/chat/widgets/chat_history.dart';
+import 'package:team_chat_demo/screens/chat/widgets/chat_history.dart';
 import 'package:team_chat_demo/common/utils.dart';
+import 'package:team_chat_demo/widgets/router_setting.dart';
 
 class ChatList extends StatelessWidget {
   const ChatList({super.key, required this.list});
@@ -17,14 +17,18 @@ class ChatList extends StatelessWidget {
 
         return ListTile(
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => ChatScreen(
-                            contact: item.cp,
-                          )));
+              Navigator.pushNamed(
+                context,
+                chatScreenRoute,
+                arguments: item.cp,
+              );
             },
-            leading: item.cp.avatar,
+            leading: item.cp.unreadCounts == 0
+                ? item.cp.avatar
+                : Badge.count(
+                    count: item.cp.unreadCounts,
+                    child: item.cp.avatar,
+                  ),
             title: Text(
               item.cp.name,
               overflow: TextOverflow.ellipsis,
