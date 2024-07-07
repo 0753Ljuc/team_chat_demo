@@ -42,7 +42,7 @@ List<(Widget, BottomNavigationBarItem)> _screens = [
 ];
 
 class _CustomScaffoldState extends State<CustomScaffold> {
-  int _currentIndex = 0;
+  int _currentIndex = 3;
 
   void _onTabTapped(int index) {
     setState(() {
