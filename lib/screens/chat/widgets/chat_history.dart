@@ -79,7 +79,6 @@ class ChatHistory extends StatelessWidget {
                         children: [
                           Text(
                             message.text,
-                            maxLines: 3,
                             style: const TextStyle(fontSize: 16.0),
                           ),
                         ],

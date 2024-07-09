@@ -15,7 +15,7 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreen extends State<ChatScreen> {
   late ContactPoint me;
-  late final List<Message> messages;
+  late List<Message> messages;
 
   final TextEditingController _controller = TextEditingController();
   final ScrollController _scrollController = ScrollController();
@@ -49,11 +49,6 @@ class _ChatScreen extends State<ChatScreen> {
     messages = widget.contact.chatHistory;
     me = context.read<Profile>().me;
     context.read<Chats>().clearUnreadCounts(widget.contact);
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 
   @override
@@ -99,6 +94,7 @@ class _ChatScreen extends State<ChatScreen> {
               padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
               child: TextField(
                 controller: _controller,
+                autofocus: true,
                 onSubmitted: _handleSubmitted,
                 decoration: const InputDecoration.collapsed(
                   hintText: 'Send a message',

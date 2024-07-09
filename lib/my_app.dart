@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Demo App",
-      home: const CustomScaffold(),
+      home: CustomScaffold(),
       navigatorObservers: [CustomRouteObserver(context)],
       routes: appRoutes,
     );

@@ -1,6 +1,6 @@
 # team_chat_demo
 
-A new Flutter project.
+A tiny Flutter project.
 
 ## Getting Started
 
