@@ -17,9 +17,10 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Screenshot
 
-![alt text](<screenshot/Simulator Screenshot - iPhone 15 Pro - 2024-07-09 at 23.22.29.png>)
-![alt text](<screenshot/Simulator Screenshot - iPhone 15 Pro - 2024-07-09 at 23.22.46.png>)
-![alt text](<screenshot/Simulator Screenshot - iPhone 15 Pro - 2024-07-09 at 23.22.57.png>)
-![alt text](<screenshot/Simulator Screenshot - iPhone 15 Pro - 2024-07-09 at 23.23.02.png>)
-![alt text](<screenshot/Simulator Screenshot - iPhone 15 Pro - 2024-07-09 at 23.24.00.png>)
-![alt text](<screenshot/Simulator Screenshot - iPhone 15 Pro - 2024-07-09 at 23.24.06.png>)
+<div style="display: flex; flex-wrap: wrap;">
+    <img src="screenshot/Simulator Screenshot - iPhone 15 Pro - 2024-07-09 at 23.22.29.png" width="180px"       alt="screenshot" />
+    <img src="screenshot/Simulator Screenshot - iPhone 15 Pro - 2024-07-09 at 23.22.46.png" width="180px"       alt="screenshot" />
+    <img src="screenshot/Simulator Screenshot - iPhone 15 Pro - 2024-07-09 at 23.22.57.png" width="180px"       alt="screenshot" />
+    <img src="screenshot/Simulator Screenshot - iPhone 15 Pro - 2024-07-09 at 23.23.02.png" width="180px"       alt="screenshot" />
+    <img src="screenshot/Simulator Screenshot - iPhone 15 Pro - 2024-07-09 at 23.24.00.png" width="180px"       alt="screenshot" />
+</div>
