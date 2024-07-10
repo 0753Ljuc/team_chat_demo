@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 
 class FindingScreen extends StatefulWidget {
-  final void Function() onSearch;
   final TextEditingController searchTextController;
-  const FindingScreen(
-      {super.key, required this.onSearch, required this.searchTextController});
+  final void Function()? onSearch;
+  final void Function(String)? onChanged;
+  String? errorText;
+
+  FindingScreen(
+      {super.key,
+      required this.searchTextController,
+      required this.onSearch,
+      this.errorText,
+      this.onChanged});
 
   @override
   State<FindingScreen> createState() => _FindingScreen();
@@ -21,9 +28,9 @@ class _FindingScreen extends State<FindingScreen> {
                 child: TextField(
               controller: widget.searchTextController,
               autofocus: true,
-              decoration: const InputDecoration(
-                labelText: "go to",
-              ),
+              onChanged: widget.onChanged,
+              decoration: InputDecoration(
+                  labelText: "go to", errorText: widget.errorText),
               textInputAction: TextInputAction.search,
             )),
             IconButton(

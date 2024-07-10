@@ -15,7 +15,6 @@ class ScreenConfig {
 
 class CustomScaffold extends StatefulWidget {
   final WebViewController _webviewController = WebViewController();
-  // ..loadRequest(Uri.parse('https://flutter.dev'));
 
   CustomScaffold({super.key});
 
@@ -26,6 +25,7 @@ class CustomScaffold extends StatefulWidget {
 class _CustomScaffoldState extends State<CustomScaffold> {
   int _currentIndex = 0;
   bool _showWebview = false;
+  String? _textError;
 
   final TextEditingController _searchTextController =
       TextEditingController.fromValue(
@@ -39,15 +39,30 @@ class _CustomScaffoldState extends State<CustomScaffold> {
     });
   }
 
+  void onTextChanged(String text) {
+    if (_textError != null && _textError!.isNotEmpty) {
+      setState(() {
+        _textError = null;
+      });
+    }
+  }
+
   void onSearch() {
     if (_searchTextController.value.text.isEmpty) {
       return;
     }
-    widget._webviewController
-        .loadRequest(Uri.parse(_searchTextController.value.text));
-    setState(() {
-      _showWebview = true;
-    });
+    try {
+      widget._webviewController
+          .loadRequest(Uri.parse(_searchTextController.value.text));
+      setState(() {
+        _textError = null;
+        _showWebview = true;
+      });
+    } catch (e) {
+      setState(() {
+        _textError = "Invalid url!";
+      });
+    }
   }
 
   Future<void> exitWebview() async {
@@ -62,8 +77,7 @@ class _CustomScaffoldState extends State<CustomScaffold> {
   }
 
   @override
-  void initState() {
-    super.initState();
+  Widget build(BuildContext context) {
     _screens = [
       ScreenConfig(
         screen: const TeamChatScreen(),
@@ -81,6 +95,8 @@ class _CustomScaffoldState extends State<CustomScaffold> {
       ScreenConfig(
         screen: FindingScreen(
           onSearch: onSearch,
+          onChanged: onTextChanged,
+          errorText: _textError,
           searchTextController: _searchTextController,
         ),
         bottomBar: const BottomNavigationBarItem(
@@ -99,10 +115,6 @@ class _CustomScaffoldState extends State<CustomScaffold> {
             label: '我',
           )),
     ];
-  }
-
-  @override
-  Widget build(BuildContext context) {
     var screen = _screens[_currentIndex];
     return Scaffold(
       appBar: AppBar(
